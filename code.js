@@ -1,8 +1,20 @@
 const form = document.querySelector("form");
 const input = document.querySelector("#user-input");
 const ul = document.querySelector(".list");
-// const closeBtn = document.querySelector(".close");
-// console.log(closeBtn);
+let groceries;
+let foodItems = JSON.parse(localStorage.getItem("foodItem"));
+
+function saveItems() {
+  if (foodItems === null) {
+    groceries = [];
+  } else {
+    groceries = foodItems;
+  }
+  groceries.push(input.value);
+  localStorage.setItem("foodItems", JSON.stringify(groceries));
+}
+
+function loadItems() {}
 
 const getValueOfInput = () => {
   if (input.value) {
@@ -22,10 +34,9 @@ function createLi() {
   newLi.innerHTML += button;
 }
 
-function localStorage() {}
-
 form.addEventListener("submit", (e) => {
   createLi();
+  saveItems();
   getValueOfInput();
   e.preventDefault();
 });
