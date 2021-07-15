@@ -11,10 +11,21 @@ function saveItems() {
     groceries = foodItems;
   }
   groceries.push(input.value);
-  localStorage.setItem("foodItems", JSON.stringify(groceries));
 }
 
-function loadItems() {}
+function storeItems() {
+  saveItems();
+  localStorage.setItem("foodItem", JSON.stringify(groceries));
+}
+
+// function loadItems() {
+//   let output = "";
+//   if (foodItems === null) {
+//     groceries = [];
+//   } else {
+//     groceries = foodItems;
+//   }
+// }
 
 const getValueOfInput = () => {
   if (input.value) {
@@ -36,7 +47,9 @@ function createLi() {
 
 form.addEventListener("submit", (e) => {
   createLi();
-  saveItems();
+  storeItems();
+  //saveItems();
+  //loadItems();
   getValueOfInput();
   e.preventDefault();
 });
