@@ -33,7 +33,7 @@ li {
   height: 4rem;
 }
 
-button.close {
+button.delete {
   background-color: rgb(212, 68, 68);
   float: right;
   font-size: 20px;

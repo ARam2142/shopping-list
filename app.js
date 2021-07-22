@@ -1,14 +1,16 @@
 const form = document.querySelector("form");
 const input = document.querySelector("#user-input");
 const ul = document.querySelector(".list");
-const deleteBtn = document.querySelector("delete");
-console.log(deleteBtn);
 
 const getValueOfInput = () => {
   if (input.value) {
     input.value = "";
   }
 };
+
+function setId() {
+  return Math.floor(Math.random() * 100000);
+}
 
 function renderLi() {
   //create li
@@ -25,10 +27,19 @@ function renderLi() {
   button.setAttribute("id", setId());
   button.textContent = "X";
   li.appendChild(button);
-}
 
-function setId() {
-  return Math.floor(Math.random() * 1000);
+  const deleteBtn = Array.from(document.querySelectorAll(".delete"));
+  deleteBtn.forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      const elVal = e.target.id;
+      const filterArr = deleteBtn.filter((item) => {
+        if (item.id === elVal) {
+          li.remove();
+          button.remove();
+        }
+      });
+    });
+  });
 }
 
 form.addEventListener("submit", (e) => {
